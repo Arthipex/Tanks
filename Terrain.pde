@@ -79,9 +79,7 @@ class Terrain{
 *************************************************************************************************************/
   void show(){
     //players
-    for(int i = 0; i < players.size(); i++){
-      players.get(i).show();
-    }
+
     
     //shells
     for(int i = 0; i < shells.size(); i++){
@@ -96,6 +94,10 @@ class Terrain{
     // draw bedrock
     fill(84,84,84);
     rect(0,sY-10,sX,10);
+    
+    for(int i = 0; i < players.size(); i++){
+    players.get(i).show();
+    }
   }
   
  
@@ -149,6 +151,8 @@ class Terrain{
       int pebx = int(players.get(i).getPx());
       float peby = pebs.get(pebx).getPy(); 
       players.get(i).setPy(peby-1);   
+      //fill(255,0,0);
+      //rect(pebx, peby, 5,5);
     }
     
     //shells
