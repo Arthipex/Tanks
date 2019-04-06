@@ -4,8 +4,6 @@ class Pebble{
 *************************************************************************************************************/
   private PVector pos;
   private PVector vel;
-  private float sX;
-  private float sY;
 
 /*************************************************************************************************************
   Constructor
@@ -29,7 +27,7 @@ class Pebble{
   public void show(){
     fill(63, 33, 4);
     noStroke();
-    rect(pos.x, pos.y, 1, sY-pos.y);
+    rect(pos.x, pos.y, 1, height-pos.y);
   }
   
 /*************************************************************************************************************
@@ -53,13 +51,7 @@ class Pebble{
     pos.y = PY;
   }
   
-  public void setSX(float SX){
-    sX = SX;
-  }
-  
-  public void setSY(float SY){
-    sY = SY;
-  }
+
   
   
 }

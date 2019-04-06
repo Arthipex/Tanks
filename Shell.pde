@@ -4,7 +4,7 @@ class Shell{
 *************************************************************************************************************/
   private PVector pos;
   private PVector vel;
-  private float blast = 30;
+  private float blast = width/50;
   private float g;
   private float speed = 20;
 
@@ -44,7 +44,7 @@ class Shell{
 *************************************************************************************************************/  
   public void show(){
     fill(255,0,0);
-    ellipse(pos.x, pos.y, 10, 10);
+    image(shell, pos.x, pos.y, gun_blue.width/2, gun_blue.height/2);
     
   }
    
@@ -55,6 +55,10 @@ class Shell{
 *************************************************************************************************************/  
   public float getBlast(){
     return blast;
+  }
+  
+  public float getSpeed(){
+    return speed;
   }
   
   public float getPx(){

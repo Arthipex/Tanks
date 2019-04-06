@@ -2,8 +2,6 @@ class Terrain{
 /*************************************************************************************************************
   Variables
 *************************************************************************************************************/
-   private int sX;
-   private int sY;
    private float[] topRow;
    private float mid;
    private float g = 0.2;
@@ -11,6 +9,7 @@ class Terrain{
    private ArrayList<Pebble> pebs = new ArrayList<Pebble>();
    private ArrayList<Shell> shells = new ArrayList<Shell>();
    private ArrayList<Player> players = new ArrayList<Player>();
+   private GUI gui;
    
    private float sin1;
    private float sin2;
@@ -22,28 +21,27 @@ class Terrain{
   input: width and height
   return:
 *************************************************************************************************************/
-  public Terrain(int w, int h){
+  public Terrain(){
     sin1 = random(0.2,0.8);
     sin2 = random(0.2,2);
     sin3 = random(0.1,3);
        
-    sX = w;
-    sY = h;
-    mid = sY/2;
-    topRow = new float[sX];
+
+    mid = height/2;
+    topRow = new float[width];
     
-    for(int i = 0; i < sX; i++){
+    for(int i = 0; i < width; i++){
       topRow[i] = 120*sin(sin1*i/sinScl) + 20*sin(sin2*i/sinScl) + 10*sin(sin3*i/sinScl) + mid;
       
       // topRow[i] = map(noise(i), 0, 1, 0, 20) + mid;  
-      pebs.add(new Pebble(i, topRow[i]));
-      pebs.get(i).setSX(sX);
-      pebs.get(i).setSY(sY);    
+      pebs.add(new Pebble(i, topRow[i]));   
     }
     
     for(int i = 0; i < 2; i++){
       players.add(new Player(i));
     }
+    
+    gui = new GUI();
   }
   
 /*************************************************************************************************************
@@ -56,7 +54,6 @@ class Terrain{
     colDet();
     move();
     show();
-    
     
   }
   
@@ -88,23 +85,31 @@ class Terrain{
     
     //shells
     for(int i = 0; i < shells.size(); i++){
-      shells.get(i).show();
+      showRotShell(shells.get(i), shell);
     }
     
-    
-    for(int i = 0; i < sX; i++){
+    //soil
+    for(int i = 0; i < width; i++){
       pebs.get(i).show();
     }
     
     // draw bedrock
     fill(84,84,84);
-    rect(0,sY-10,sX,10);
+    rect(0,height-10,width,10);
     
     for(int i = 0; i < players.size(); i++){
     players.get(i).show();
     }
+    
+    // GUI
+    for(int i = 0; i < players.size(); i++){
+      gui.drawGui(players.get(i));    
+    }
+    
+    
   }
-  
+
+
  
 /*************************************************************************************************************
   spawnShell
@@ -128,7 +133,7 @@ class Terrain{
      
       
       for(int i = int(sx - blast); i < sx + blast; i++){
-        if(i >= 0 && i < sX){
+        if(i >= 0 && i < width){
           px = pebs.get(i).getPx();
           py = pebs.get(i).getPy();                
           
@@ -137,8 +142,8 @@ class Terrain{
             pebs.get(i).setPy(py + /*2 **/ sqrt((1+blast)*(blast) - (px - sx)*(px - sx)));
             }
             // bedrock, can't be destroyed
-            if(pebs.get(i).getPy() > sY - 10){
-              pebs.get(i).setPy(sY - 10);
+            if(pebs.get(i).getPy() > height - 10){
+              pebs.get(i).setPy(height - 10);
             }
           }
         }
@@ -163,12 +168,18 @@ class Terrain{
     //step 2: check for collision and detonate if so
     for(int i = 0; i < shells.size(); i++){
       float pred = shells.get(i).getPx() + shells.get(i).getVx();
-      if(pred > sX || pred < 0){
+      if(pred > width || pred < 0){
         shells.remove(i);
       }
+      
       if(shells.size() > 0){
         float sx = shells.get(i).getPx();
         float sy = shells.get(i).getPy();
+        
+        if(shells.get(i).getPy() + shells.get(i).getSpeed() > pebs.get(int(sx)).getPy()){
+        
+        }
+        
         if(sy > pebs.get(int(sx)).getPy()){
             detShell(shells.get(i));
             shells.remove(i);

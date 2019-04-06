@@ -46,10 +46,12 @@ class Gun{
   
   public void incEle(){
     ele += eleRate;
+    ele %= 2*PI;
   }
   
   public void decEle(){
     ele -= eleRate;
+    ele %= 2*PI;
   }
   
 

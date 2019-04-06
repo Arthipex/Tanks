@@ -20,9 +20,6 @@ public void showRotPlayer(Player player, PImage pic, int dir){
         popMatrix();
         break;
    }
-   
-   
-
 }   
 
 public void showRotGun(Gun gun, PImage pic){
@@ -30,5 +27,13 @@ public void showRotGun(Gun gun, PImage pic){
   translate(gun.getPx(), gun.getPy()-40);
   rotate(gun.getEle());
   image(pic, -5, -6);
+  popMatrix();
+}
+
+public void showRotShell(Shell shell, PImage pic){
+  pushMatrix();
+  translate(shell.getPx()+pic.width/2, shell.getPy()+pic.height/2);
+  rotate(PI);
+  image(pic, 0, 0, gun_blue.width/2, gun_blue.height/2);
   popMatrix();
 }

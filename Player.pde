@@ -7,7 +7,6 @@ class Player{
   private PVector vel = new PVector();
   private float health = 100;
   private int playerNo;
-  private float gunElevation = 0;
   private float speed = 5;
   private int dir;  //  right = 1, left = 0
   private int animState;
@@ -74,7 +73,7 @@ class Player{
   return:
 *************************************************************************************************************/
   public void move(){
-    if(pos.x + vel.x - tank_blue.width/4 > 0 && pos.x + vel.x + tank_blue.width/4 < 1920){
+    if(pos.x + vel.x - tank_blue.width/4 > 0 && pos.x + vel.x + tank_blue.width/4 < width){
         pos.x += vel.x;
     }
 
@@ -97,6 +96,14 @@ class Player{
   
   public float getPy(){
     return pos.y;
+  }
+  
+  public float getHealth(){
+    return health;
+  }
+  
+  public int getPlayerNo(){
+    return playerNo;
   }
   
   public void setPx(float x){
