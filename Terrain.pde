@@ -70,6 +70,11 @@ class Terrain{
     for(int i = 0; i < shells.size(); i++){
       shells.get(i).move();
     }
+    
+    //players
+    for(int i = 0; i < players.size(); i++){
+      players.get(i).move();
+    }
   }
   
 /*************************************************************************************************************
@@ -106,8 +111,8 @@ class Terrain{
   input: coordinates, argument, speed
   return:
 *************************************************************************************************************/
-  void spawnShell(float x, float y, float arg, float abs){
-    shells.add(new Shell(x, y, arg, abs, g));
+  void spawnShell(float x, float y, float arg){
+    shells.add(new Shell(x, y, arg, g));
   }
   
 /*************************************************************************************************************
@@ -150,45 +155,26 @@ class Terrain{
     for(int i = 0; i < players.size(); i++){
       int pebx = int(players.get(i).getPx());
       float peby = pebs.get(pebx).getPy(); 
-      players.get(i).setPy(peby-1);   
-      //fill(255,0,0);
-      //rect(pebx, peby, 5,5);
+      players.get(i).setPy(peby);   
     }
     
     //shells
+    //step 1: remove off-range shells
+    //step 2: check for collision and detonate if so
     for(int i = 0; i < shells.size(); i++){
-      float ms = shells.get(i).getVy()/shells.get(i).getVx();
-      float bs = shells.get(i).getPy() - ms*shells.get(i).getPx();
-      float cx = 0;
-      float cy = 0;
-      for(int k = 0; k < pebs.size()-1; k++){
-        if(shells.get(i).getVy()+shells.get(i).getPy() > pebs.get(k+1).getPy()){
-          float mp = (pebs.get(k+1).getPy()-pebs.get(k).getPy()) / (pebs.get(k+1).getPx() - pebs.get(k).getPx());
-          float bp = pebs.get(k).getPy() - mp*pebs.get(k).getPx();
-          cx = (bp - bs)/(ms - mp);
-          
-          if(cx <= pebs.get(k+1).getPx() && cx >= pebs.get(k).getPx()){
-            cy = cx * ms + bs;
-            shells.get(i).setPx(cx);
-            shells.get(i).setPy(cy);
-            detShell(shells.get(i));
-            shells.remove(i);
-            return;
-          }
-        }       
-      }
-    }
-    // old style, less accurate
-    /*for(int i = 0; i < shells.size(); i++){
-      int impx = int(shells.get(i).getPx() + shells.get(i).getVx());
-      float impy = shells.get(i).getPy() + shells.get(i).getVy();
-      
-      
-      if(impx > 0 && impx < sX && impy > pebs.get(impx).getPy()){
-        detShell(shells.get(i));
+      float pred = shells.get(i).getPx() + shells.get(i).getVx();
+      if(pred > sX || pred < 0){
         shells.remove(i);
       }
-    }*/
+      if(shells.size() > 0){
+        float sx = shells.get(i).getPx();
+        float sy = shells.get(i).getPy();
+        if(sy > pebs.get(int(sx)).getPy()){
+            detShell(shells.get(i));
+            shells.remove(i);
+        }
+      }     
+    }
   }
 
 }

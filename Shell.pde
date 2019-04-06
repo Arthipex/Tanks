@@ -4,22 +4,23 @@ class Shell{
 *************************************************************************************************************/
   private PVector pos;
   private PVector vel;
-  private float blast = 40;
+  private float blast = 30;
   private float g;
+  private float speed = 20;
 
 /*************************************************************************************************************
   Constructor
   input: position, angle, speed, gravity
   return:
 *************************************************************************************************************/
-  public Shell(float x, float y, float arg, float abs, float gravity){
+  public Shell(float x, float y, float arg, float gravity){
     pos = new PVector();
     pos.x = x;
     pos.y = y;
     
     vel = new PVector();
-    vel.x = cos(arg) * abs;
-    vel.y = -sin(arg) * abs;
+    vel.x = cos(arg) * speed;
+    vel.y = -sin(arg) * speed;
     
     g = gravity;
     
