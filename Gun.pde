@@ -1,7 +1,8 @@
 class Gun{
   private PVector pos;
   private float ele;
-  private float eleRate = 0.01;
+  private float tankAngle;
+  private float eleRate = 0.03;
   
   public Gun(float x, float y){
     pos = new PVector();
@@ -42,6 +43,10 @@ class Gun{
   
   public void setEle(float ele){
     this.ele = ele;
+  }
+  
+  public void setTankAngle(float angle){
+    tankAngle = angle;
   }
   
   public void incEle(){

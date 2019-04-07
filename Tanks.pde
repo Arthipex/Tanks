@@ -10,6 +10,7 @@ private static PImage tank_red;
 private static PImage gun_blue;
 private static PImage gun_red;
 private static PImage shell;
+private static PImage expl;
 
 private static int timer;
 private static int turn = 0;
@@ -29,6 +30,7 @@ void setup(){
   gun_blue = loadImage("gun_blue.png");
   gun_red = loadImage("gun_red.png");
   shell = loadImage("shell.png");
+  expl = loadImage("expl.png");
   
 }
 /*************************************************************************************************************
@@ -44,9 +46,12 @@ void draw(){
 }
 
 void keyPressed(){
-    switch(key){
+  if(hills.shells.size()==0){
+     switch(key){
       case ' ':
         hills.spawnShell(hills.players.get(turn).gun.getPx(), hills.players.get(turn).gun.getPy()-40, hills.players.get(turn).gun.getEle()*-1);
+        turn++;
+        turn %= 2;
         break;
       case 'd': 
         hills.players.get(turn).setVx(hills.players.get(turn).getSpeed());
@@ -62,6 +67,8 @@ void keyPressed(){
       default:
         hills.players.get(turn).setVx(0);
     }
+  }
+   
 }
 
 void keyReleased(){

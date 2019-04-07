@@ -4,7 +4,7 @@ class Shell{
 *************************************************************************************************************/
   private PVector pos;
   private PVector vel;
-  private float blast = width/50;
+  private float blast = width/40;
   private float g;
   private float speed = 20;
 

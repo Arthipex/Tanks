@@ -9,6 +9,7 @@ class Terrain{
    private ArrayList<Pebble> pebs = new ArrayList<Pebble>();
    private ArrayList<Shell> shells = new ArrayList<Shell>();
    private ArrayList<Player> players = new ArrayList<Player>();
+   private ArrayList<Effect> effects = new ArrayList<Effect>();
    private GUI gui;
    
    private float sin1;
@@ -97,13 +98,22 @@ class Terrain{
     fill(84,84,84);
     rect(0,height-10,width,10);
     
+    
     for(int i = 0; i < players.size(); i++){
-    players.get(i).show();
+    players.get(i).show(pebs);
     }
     
     // GUI
     for(int i = 0; i < players.size(); i++){
       gui.drawGui(players.get(i));    
+    }
+    
+    // effecs
+    for(int i = 0; i < effects.size(); i++){
+      effects.get(i).show();
+      if(effects.get(i).getTimer() == 0){
+        effects.remove(i);
+      }
     }
     
     
@@ -118,6 +128,7 @@ class Terrain{
 *************************************************************************************************************/
   void spawnShell(float x, float y, float arg){
     shells.add(new Shell(x, y, arg, g));
+    //shells.add(new Nuke(x,y,arg,g));
   }
   
 /*************************************************************************************************************
@@ -127,9 +138,10 @@ class Terrain{
 *************************************************************************************************************/
   void detShell(Shell shell){
     float blast = shell.getBlast();
-    float px;
-    float py;
+    float px = 0;
+    float py = 0;
     float sx = shell.getPx();
+    float sy = shell.getPy();
      
       
       for(int i = int(sx - blast); i < sx + blast; i++){
@@ -144,9 +156,23 @@ class Terrain{
             // bedrock, can't be destroyed
             if(pebs.get(i).getPy() > height - 10){
               pebs.get(i).setPy(height - 10);
-            }
+            } 
           }
         }
+        
+        for(int i = 0; i < players.size(); i++){
+           if(dist(players.get(i).getPx(), players.get(i).getPy(),sx, sy) < blast){
+             float dist =  dist(players.get(i).getPx(), players.get(i).getPy(),sx, sy);
+             players.get(i).redHealth(blast - dist);
+           }
+        }
+        
+        effects.add(new Effect(sx, sy, 0));
+        effects.get(effects.size()-1).setScale(blast);
+        
+        
+        
+        
     
   }
   
@@ -160,7 +186,7 @@ class Terrain{
     for(int i = 0; i < players.size(); i++){
       int pebx = int(players.get(i).getPx());
       float peby = pebs.get(pebx).getPy(); 
-      players.get(i).setPy(peby);   
+      players.get(i).setPy(peby+2);   
     }
     
     //shells
