@@ -11,6 +11,8 @@ private static PImage gun_blue;
 private static PImage gun_red;
 private static PImage shell;
 private static PImage expl;
+private static PImage windsock_right;
+private static PImage windsock_left;
 
 private static int timer;
 private static int turn = 0;
@@ -31,6 +33,8 @@ void setup(){
   gun_red = loadImage("gun_red.png");
   shell = loadImage("shell.png");
   expl = loadImage("expl.png");
+  windsock_right = loadImage("windsock_right.png");
+  windsock_left = loadImage("windsock_left.png");
   
 }
 /*************************************************************************************************************
