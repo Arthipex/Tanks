@@ -1,5 +1,5 @@
 class GUI{
-  float lineThic = 2;
+  float lineThic = 1;
   float px = width/200;
   float py = width/200;
   float sx = width/5;
@@ -21,7 +21,7 @@ class GUI{
  public void drawHb(Player player){
    switch(player.getPlayerNo()){
      case 0:
-       fill(255,0,0);
+       fill(200,0,0);
        noStroke();
        rect(px, py, map(player.getHealth(), 0, 100, 0, sx), sy);
        noFill();
@@ -30,7 +30,7 @@ class GUI{
        rect(px, py, sx, sy);
        break;
      case 1:
-       fill(255,0,0);
+       fill(200,0,0);
        noStroke();
        rect(width-px, py, -map(player.getHealth(), 0, 100, 0, sx), sy);
        noFill();

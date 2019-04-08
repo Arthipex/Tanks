@@ -7,12 +7,13 @@ class Player{
   private PVector vel = new PVector();
   private float health = 100;
   private int playerNo;
-  private float speed = 5;
+  private float speed = 2;
   private int dir;  //  right = 1, left = 0
   private int animState;
   private float angle;
-  private final int fuel = 40;
+  private final int fuel = 200;
   private int mov = fuel;
+//  private Hitbox hb;
   
 /*************************************************************************************************************
   Constructor
@@ -29,6 +30,7 @@ class Player{
     
     }
     this.playerNo = playerNo;
+    //hb = new Hitbox(tank_blue, pos);
     gun = new Gun(pos.x, pos.y);
   }
   
@@ -74,7 +76,7 @@ class Player{
 *************************************************************************************************************/
   public void move(){
     if(mov > 0){
-      mov -= vel.x;
+      mov -= abs(vel.x);
       if(pos.x + vel.x - tank_blue.width/4 > 0 && pos.x + vel.x + tank_blue.width/4 < width){
           pos.x += vel.x;
         }
@@ -86,6 +88,7 @@ class Player{
           dir = 0;
         }
       }
+      //hb.setP(pos);
     }
     
     
@@ -124,6 +127,10 @@ class Player{
     gun.setTankAngle(angle);
   }
   
+  public float getAngle(){
+    return angle;
+  }
+  
   public void setVx(float x){
     vel.x = x;
   } 
@@ -141,6 +148,10 @@ class Player{
     if(health < 0){
       health = 0;
     }
+  }
+  
+  public void refuel(){
+    mov = fuel;
   }
 
 }

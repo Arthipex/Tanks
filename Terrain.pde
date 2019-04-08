@@ -160,20 +160,19 @@ class Terrain{
           }
         }
         
+        // check if players are within blast radius
         for(int i = 0; i < players.size(); i++){
-           if(dist(players.get(i).getPx(), players.get(i).getPy(),sx, sy) < blast){
+//          if(rectBall(players.get(i).getPx()-tank_blue.width/4, players.get(i).getPy()-tank_blue.height/2, tank_blue.width/2, tank_blue.height/2, sx, sy, shell.getBlast()*2)){
+          if(dist(players.get(i).getPx(), players.get(i).getPy(),sx, sy) < blast + tank_blue.width/2){
              float dist =  dist(players.get(i).getPx(), players.get(i).getPy(),sx, sy);
-             players.get(i).redHealth(blast - dist);
+             players.get(i).redHealth(abs(blast - dist));
            }
         }
         
+        
         effects.add(new Effect(sx, sy, 0));
-        effects.get(effects.size()-1).setScale(blast);
-        
-        
-        
-        
-    
+        effects.get(effects.size()-1).setSize(blast);
+          
   }
   
 /*************************************************************************************************************
@@ -210,8 +209,19 @@ class Terrain{
             detShell(shells.get(i));
             shells.remove(i);
         }
-      }     
+      } 
+      
+      if(shells.size() > 0){
+        float sx = shells.get(i).getPx();
+        float sy = shells.get(i).getPy();
+        for(int k = 0; k < players.size(); k++){
+            if(pointRect(sx, sy, players.get(k).getPx()-tank_blue.width/4, players.get(k).getPy()-tank_blue.height/2, tank_blue.width/2, tank_blue.height/2)){
+            detShell(shells.get(i));
+            shells.remove(i);
+          }
+        }
+      }
+      
     }
   }
-
 }

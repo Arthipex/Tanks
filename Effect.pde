@@ -2,7 +2,7 @@ class Effect{
   PVector pos = new PVector();
   int timer = 30;
   int effect;
-  float scale;
+  float size;
   
   public Effect(float x, float y, int eff){
     pos.x = x;
@@ -14,7 +14,7 @@ class Effect{
     switch(effect){
     case 0: 
  //   imageMode(CENTER);
-      image(expl, pos.x-scale/2, pos.y-scale/2, 2*scale, 2*scale);
+      image(expl, pos.x-size, pos.y-size, 2*size, 2*size);
       timer--;
     }
   }
@@ -23,8 +23,8 @@ class Effect{
     return timer;
   }
   
-  public void setScale(float scl){
-    scale = scl;
+  public void setSize(float sz){
+    size = sz;
   }
 
 }

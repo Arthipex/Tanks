@@ -3,9 +3,11 @@ class Gun{
   private float ele;
   private float tankAngle;
   private float eleRate = 0.03;
+  private PVector muzzle;
   
   public Gun(float x, float y){
     pos = new PVector();
+    muzzle = new PVector();
     pos.x = x;
     pos.y = y;
   }
@@ -18,8 +20,18 @@ class Gun{
   public void align(float x, float y){
     pos.x = x;
     pos.y = y;
+    muzzle.x = pos.x + 40*sin(tankAngle) + cos(ele)*gun_blue.width;
+    muzzle.y = pos.y - 40*cos(tankAngle) + sin(ele)*gun_blue.width;
+   
   }
   
+  public float getMx(){
+    return muzzle.x;
+  }
+  
+  public float getMy(){
+    return muzzle.y;
+  }
   
   public float getPx(){
     return pos.x;
