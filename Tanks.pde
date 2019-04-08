@@ -59,7 +59,6 @@ void keyPressed(){
         for(int i = 0; i < hills.players.size(); i++){
           hills.players.get(i).refuel();
         }
-        hills.randomWind();
         break;
       case 'd': 
         hills.players.get(turn).setVx(hills.players.get(turn).getSpeed());

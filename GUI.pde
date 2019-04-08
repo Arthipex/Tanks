@@ -22,9 +22,9 @@ class GUI{
   
  public void drawWindsock(float wind){
     if(wind > 0){
-      image(windsock_right, width/2, height/10, width/20, width/20); 
+      image(windsock_right, width/2 - windsock_right.width/6, height/20, windsock_right.width/3, windsock_right.height/3); 
     } else if(wind < 0){
-      image(windsock_left, width/2, height/10, width/20, width/20); 
+      image(windsock_left, width/2 - windsock_left.width/6, height/20, windsock_left.width/3, windsock_left.height/3); 
     }
  }
   

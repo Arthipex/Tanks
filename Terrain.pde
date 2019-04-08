@@ -177,6 +177,7 @@ class Terrain{
         
         effects.add(new Effect(sx, sy, 0));
         effects.get(effects.size()-1).setSize(blast);
+        randomWind();
           
   }
   

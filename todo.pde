@@ -1,9 +1,18 @@
 /*  MECHANICS  
       dynamic Hitboxes
       improve impact point detection
-      cheat code for nuke
       more ammo types
-      victory screen
+        zielsucher
+        cluster
+        easteregg nuke
+        sabot (less wind influence)
+        cow
+        
+        
+      virctory screen
+        america fuck yeaaa
+        rurusss
+        A-10 kills survivor
       
     GUI
       ammo selection
