@@ -46,6 +46,7 @@ class Terrain{
     }
     
     gui = new GUI();
+    randomWind();
   }
   
 /*************************************************************************************************************
@@ -109,7 +110,7 @@ class Terrain{
     
     // GUI
     for(int i = 0; i < players.size(); i++){
-      gui.drawGui(players.get(i));    
+      gui.drawGui(players.get(i), wind);    
     }
     
     // effecs

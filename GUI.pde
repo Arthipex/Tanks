@@ -8,18 +8,23 @@ class GUI{
     
   }
   
-  public void drawGui(Player player){
+  public void drawGui(Player player, float wind){
     // healthbars
     drawHb(player);
     
     // sidepanel
     drawPanel(player);
     
+    // windsock
+    drawWindsock(wind);
+    
   }
   
  public void drawWindsock(float wind){
     if(wind > 0){
-      image(windsock, width/2, height/10); 
+      image(windsock_right, width/2, height/10, width/20, width/20); 
+    } else if(wind < 0){
+      image(windsock_left, width/2, height/10, width/20, width/20); 
     }
  }
   
