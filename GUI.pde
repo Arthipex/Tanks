@@ -17,6 +17,11 @@ class GUI{
     
   }
   
+ public void drawWindsock(float wind){
+    if(wind > 0){
+      image(windsock, width/2, height/10); 
+    }
+ }
   
  public void drawHb(Player player){
    switch(player.getPlayerNo()){
