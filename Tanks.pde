@@ -49,12 +49,13 @@ void keyPressed(){
   if(hills.shells.size()==0){
      switch(key){
       case ' ':
-        hills.spawnShell(hills.players.get(turn).gun.getPx() + 20*cos(hills.players.get(turn).gun.getEle()*-1), hills.players.get(turn).gun.getPy()-70 + 20*sin(hills.players.get(turn).gun.getEle()*-1), hills.players.get(turn).gun.getEle()*-1);
+        hills.spawnShell(hills.players.get(turn).gun.getPx() /*+ 20*cos(hills.players.get(turn).gun.getEle()*-1)*/, hills.players.get(turn).gun.getPy()-100 /*+ 20*sin(hills.players.get(turn).gun.getEle()*-1)*/, hills.players.get(turn).gun.getEle()*-1);
         turn++;
-        turn %= 2;
+        turn %= hills.players.size();
         for(int i = 0; i < hills.players.size(); i++){
           hills.players.get(i).refuel();
         }
+        hills.randomWind();
         break;
       case 'd': 
         hills.players.get(turn).setVx(hills.players.get(turn).getSpeed());

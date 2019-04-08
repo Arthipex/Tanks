@@ -1,6 +1,5 @@
 /*  MECHANICS  
       dynamic Hitboxes
-      Wind influence
       improve impact point detection
       cheat code for nuke
       more ammo types

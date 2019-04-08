@@ -6,7 +6,8 @@ class Shell{
   private PVector vel;
   private float blast = width/40;
   private float g;
-  private float speed = 20;
+  private float speed = 20; 
+  private float wind;
 
 /*************************************************************************************************************
   Constructor
@@ -33,6 +34,7 @@ class Shell{
 *************************************************************************************************************/
   public void move(){
     vel.y += g;
+    vel.x += wind;
     pos.x += vel.x;
     pos.y += vel.y;
   }
@@ -83,5 +85,9 @@ class Shell{
   
   public void setPy(float py){
     pos.y = py;
+  }
+  
+  public void setWind(float wind){
+    this.wind = wind; 
   }
 }

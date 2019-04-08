@@ -17,6 +17,9 @@ class Terrain{
    private float sin3;
    private float sinScl = 80;
    
+   private float wind = 0;
+   private float windSpeed = 0.02;
+   
 /*************************************************************************************************************
   Constructor
   input: width and height
@@ -66,6 +69,7 @@ class Terrain{
   void move(){  
      //shells
     for(int i = 0; i < shells.size(); i++){
+      shells.get(i).setWind(wind);
       shells.get(i).move();
     }
     
@@ -98,7 +102,7 @@ class Terrain{
     fill(84,84,84);
     rect(0,height-10,width,10);
     
-    
+    // players
     for(int i = 0; i < players.size(); i++){
     players.get(i).show(pebs);
     }
@@ -223,5 +227,10 @@ class Terrain{
       }
       
     }
+  }
+  
+  public void randomWind(){
+    wind = random(-windSpeed, windSpeed); 
+    println(wind);
   }
 }

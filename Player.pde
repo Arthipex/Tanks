@@ -13,6 +13,7 @@ class Player{
   private float angle;
   private final int fuel = 200;
   private int mov = fuel;
+  
 //  private Hitbox hb;
   
 /*************************************************************************************************************
