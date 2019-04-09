@@ -24,7 +24,7 @@ private static int turn = 0;
 *************************************************************************************************************/
 void setup(){
   frameRate(fps);
-//  fullScreen();
+  //fullScreen();
   size(1920, 1080);
   hills = new Terrain();
   tank_blue = loadImage("tank_blue.png");

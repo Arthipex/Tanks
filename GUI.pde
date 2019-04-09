@@ -51,6 +51,19 @@ class GUI{
    }
   } 
   
+  public void drawFb(Player player){
+    // switch-case struktur verwenden (analog zu drawHb). Bedingung des Switch-Statement sind eine Art "else if", und die Bedingung ist die PlayerNo (ist entweder 0 oder 1). Case 0/1 reagieren entsprechend darauf.
+    
+    //1. mit fill() Farbe auswählen. noStroke() sorgt dafür, dass kein Rahmen gezeichnet wird.
+    
+    //2. die Fuelbar mit rect(x,y,rx,ry) zeichnen. x,y sind Koordinaten, rx,ry die Grösse des Rechtecks. für die Grösse in x-Richtung map() verwenden. map() nimmt fünf Werte auf: Der Wert welcher skaliert werden soll, Unter- und Obergrenze der Skala, aus welcher er entstammt, sowie Unter- und Obergrenze der Skala, welche neu verwendet werden soll.
+    
+    //3. den Rahmen zeichnen. noFill() führt dazu, dass keine Farbe verwendet wird, das Rechteck wird transparent. stroke(0) setzt die Rahmenfarbe auf schwarz, strokeWeight() setzt die Rahmendicke.
+    //   der Rahmen ist ebenfalls ein Rechteck. 
+    
+    
+  }
+  
   public void drawArg(Player player){
     
   }
